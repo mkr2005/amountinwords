@@ -95,4 +95,39 @@ class PrintAmountInWords
 
         return $words;
     }
+
+    public function formatAmount($amount, $decimalPrecision)
+    {
+        return number_format($amount, $decimalPrecision, '.', '');
+    }
+
+    public function amountToWords($amount)
+    {
+        $decimalPrecision = 2;
+        $formattedAmount = $this->formatAmount($amount, $decimalPrecision);
+        $amountArr = explode('.', $formattedAmount);
+        $wholeNum = (int)$amountArr[0];
+        $fractionalNum = isset($amountArr[1]) ? (int)$amountArr[1] : 0;
+
+        // Define currency names
+        $currencyName = 'CURRENCY'; // You can replace 'CURRENCY' with the actual currency name
+        $decimalCurrencyName = 'CENTS';
+
+        // Convert whole number to words
+        $amountWords = $this->displayWords($wholeNum) . ' ' . $currencyName . ' ONLY';
+        // Convert fractional number to words if greater than zero
+        if ($fractionalNum > 0) {
+            $fractionalWords = $this->displayWords($fractionalNum);
+            $amountWords .= ' AND ' . $fractionalWords . ' ' . $decimalCurrencyName . ' ONLY';
+        }
+
+        return $amountWords;
+    }
 }
+
+// Example usage
+$printAmountInWords = new PrintAmountInWords();
+$amount = 1000.25;
+
+// Convert amount to words
+echo $printAmountInWords->amountToWords($amount);
