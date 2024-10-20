@@ -64,11 +64,14 @@ use App\Http\Controllers\AmountController;
 
 Route::get('/amount-in-words', [AmountController::class, 'index']);
 
-{
-    "amount": 12345,
-    "in_words": "TWELVE THOUSAND THREE HUNDRED FORTY FIVE"
-}
+Usage
+   $amount = 4500.00; // Example amount
+    // Call the correct method to convert amount to words with currency names
+    $words = $this->amountInWords->amountToWords($amount, 'USD', 'cents');
 
+    return response()->json([
+        'amount' => $amount,
+        'in_words' => $words,
 
 Step 4: Accessing the Functionality
 Now, when you access the /amount-in-words route in your browser or through an API client like Postman, you should get a JSON response with the amount in words:
