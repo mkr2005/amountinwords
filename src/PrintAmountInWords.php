@@ -101,7 +101,8 @@ class PrintAmountInWords
         return number_format($amount, $decimalPrecision, '.', '');
     }
 
-    public function amountToWords($amount)
+    // public function amountToWords($amount)
+    public function amountToWords($amount, $currencyName = 'CURRENCY', $decimalCurrencyName = 'CENTS')
     {
         $decimalPrecision = 2;
         $formattedAmount = $this->formatAmount($amount, $decimalPrecision);
@@ -110,24 +111,29 @@ class PrintAmountInWords
         $fractionalNum = isset($amountArr[1]) ? (int)$amountArr[1] : 0;
 
         // Define currency names
-        $currencyName = 'CURRENCY'; // You can replace 'CURRENCY' with the actual currency name
-        $decimalCurrencyName = 'CENTS';
+        // $currencyName = 'Rs'; 
+        // $decimalCurrencyName = 'Paisa'; 
 
-        // Convert whole number to words
+        
+        
         $amountWords = $this->displayWords($wholeNum) . ' ' . $currencyName . ' ONLY';
-        // Convert fractional number to words if greater than zero
+    
         if ($fractionalNum > 0) {
             $fractionalWords = $this->displayWords($fractionalNum);
             $amountWords .= ' AND ' . $fractionalWords . ' ' . $decimalCurrencyName . ' ONLY';
         }
 
         return $amountWords;
+
+        // Example usage
+        // $printAmountInWords = new PrintAmountInWords();
+        // echo $printAmountInWords->amountToWords(1000.25, 'Rs', 'Paisa');
     }
 }
 
 // Example usage
 $printAmountInWords = new PrintAmountInWords();
-$amount = 1000.25;
 
-// Convert amount to words
+// Convert a dynamic amount to words
+$amount = 6000.12; // This can be any amount, dynamically set by the user
 echo $printAmountInWords->amountToWords($amount);
