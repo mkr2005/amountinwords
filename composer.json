@@ -1,0 +1,29 @@
+{
+    "name": "bizmitra/amountinwords",
+    "description": "A package to convert amount into words",
+    "keywords": ["laravel", "amount", "words", "converter"],
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Bizmitra ERP",
+        "email": "mkr@bizmitra.io"
+      }
+    ],
+    "autoload": {
+      "psr-4": {
+        "Bizmitra\\Amountinwords\\": "src/"
+      }
+    },
+    "require": {
+      "php": "^7.4|^8.0",
+      "illuminate/support": "^8.0|^9.0|^10.0"
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "Bizmitra\\Amountinwords\\AmountinwordsServiceProvider"
+        ]
+      }
+    }
+  }
+  
