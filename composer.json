@@ -1,7 +1,7 @@
 {
     "name": "bizmitra/amountinwords",
     "description": "A package to convert amount into words",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "keywords": ["laravel", "amount", "words", "converter", "amount in words", "amount to words", "amount converter","ERP","CRM","Bizmitra ERP"], 
     "license": "MIT",
     "authors": [
