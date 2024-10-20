@@ -116,14 +116,16 @@ class PrintAmountInWords
 
         
         
-        $amountWords = $this->displayWords($wholeNum) . ' ' . $currencyName . ' ONLY';
+        
+        $amountWords = $this->displayWords($wholeNum) . ' ' . ucfirst(strtolower($currencyName));
     
         if ($fractionalNum > 0) {
             $fractionalWords = $this->displayWords($fractionalNum);
-            $amountWords .= ' AND ' . $fractionalWords . ' ' . $decimalCurrencyName . ' ONLY';
+            // $amountWords .= ' AND ' . $fractionalWords . ' ' . $decimalCurrencyName . ' Only';
+            $amountWords .= ' AND ' . $fractionalWords . ' ' . strtolower($decimalCurrencyName);
         }
-
-        return $amountWords;
+        $amountWords .= ' ONLY';
+        return ucfirst($amountWords);
 
         // Example usage
         // $printAmountInWords = new PrintAmountInWords();
@@ -132,8 +134,6 @@ class PrintAmountInWords
 }
 
 // Example usage
-$printAmountInWords = new PrintAmountInWords();
+// $printAmountInWords = new PrintAmountInWords();
 
-// Convert a dynamic amount to words
-$amount = 6000.12; // This can be any amount, dynamically set by the user
-echo $printAmountInWords->amountToWords($amount);
+// echo $this->amountInWords->amountToWords(5000.45, 'usd', 'cents');
